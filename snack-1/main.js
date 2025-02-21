@@ -17,7 +17,23 @@ const bikes = [
     }
 ];
 
-
+/**
+ * 
+ * @param {array} arr 
+ * @returns {object}
+ */
 function getLighterBike(arr) {
+    let lighterBike;
+    for(let i = 0; i < arr.length; i++){
+        const currentWeight = arr[i].bikeWeight;
+        for(let j = i + 1; j < arr.length; i++){
+            const confontWeight = arr[j].bikeWeight;
+            if(currentWeight < confontWeight){
+                lighterBike = currentWeight;
+            };
+        };
+    };
+    return lighterBike;
+};
 
-}
+console.log(getLighterBike(bikes));
