@@ -30,10 +30,10 @@ function getLighterBike(arr) {
             const confontWeight = arr[j].bikeWeight;
             if(currentWeight < confontWeight){
                 lighterBike = currentWeight;
-            };
-        };
-    };
+            }
+        }
+    }
     return lighterBike;
-};
+}
 
 console.log(getLighterBike(bikes));
