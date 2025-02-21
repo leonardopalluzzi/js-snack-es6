@@ -4,36 +4,47 @@
 //recover HTML assets
 const BikeNameEl = document.querySelector('.card-title');
 const BikeWeighEl = document.querySelector('.bike_w');
+const bikeImage = document.querySelector('.card-img-top');
+const btnEl = document.querySelector('.btn');
 const bikes = [
     {
-        bikeName: 'super mountain',
+        bikeName: 'Super mountain',
         bikeWeight: 80,
+        image: 'https://momabikes.it/cdn/shop/files/8436578261987.PT01_fdc5e94f-74a6-40e5-abc2-5a39c33ff4d1_5760x.jpg?v=1713448137',
     }, {
-        bikeName: 'ulta light street',
-        bikeWeight: 20,
+        bikeName: 'Ultra light street',
+        bikeWeight: 25,
+        image: 'https://bhbikes.b-cdn.net/cache/bicis/f16223/lr805_nbb_n1.jpg',
     }, {
-        bikeName: 'all round',
+        bikeName: 'All round',
         bikeWeight: 35,
+        image: 'https://contao4.stevensbikes.de/assets/images/0/Allround_super_flight_gent_MY18-95f19084.jpg',
     }
 ];
 
 /**
- * 
+ * calc the lighter bike in the array and returns it
  * @param {array} arr 
- * @returns {object}
+ * @returns {object} return the lighter bike in the array
  */
 function getLighterBike(arr) {
-    let lighterBike;
-    for(let i = 0; i < arr.length; i++){
+    let lighterBikeNumber = arr[0].bikeWeight;
+    let lighterBikeObject;
+    for(let i = 1; i < arr.length; i++){
         const currentWeight = arr[i].bikeWeight;
-        for(let j = i + 1; j < arr.length; i++){
-            const confontWeight = arr[j].bikeWeight;
-            if(currentWeight < confontWeight){
-                lighterBike = currentWeight;
-            }
+        if(lighterBikeNumber > currentWeight){
+            lighterBikeNumber = currentWeight;
+            lighterBikeObject = arr[i];
         }
     }
-    return lighterBike;
+    return lighterBikeObject;
 }
 
 console.log(getLighterBike(bikes));
+
+btnEl.addEventListener('click', function () {
+    getLighterBike(bikes);
+    bikeImage.src = getLighterBike(bikes).image;
+    BikeNameEl.innerHTML = getLighterBike(bikes).bikeName;
+    BikeWeighEl.innerHTML = getLighterBike(bikes).bikeWeight + ' kg';
+})
